@@ -1,0 +1,39 @@
+.full-screen {
+    display: flex;
+    width: 100vw;
+    height: 70vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card {
+    padding: 30px 50px;
+    background-color: rgb(49, 47, 47);
+    color: white;
+    border-radius: 10%;
+    width: 35%;
+    height: 50%;
+}
+
+.login-input {
+    line-height: 45px;
+    width: 100%;
+    display: flex;
+    border-radius: 5%;
+    margin: 20px 0px;
+}
+
+.login-btn {
+    padding: 10px 20px;
+    background-color: blue;
+    cursor: pointer;
+    color: white;
+    font-weight: 700;
+    margin: 10px 0px;
+}
+
+.login-span:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
