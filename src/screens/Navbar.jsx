@@ -4,12 +4,16 @@ import './Navbar.css'
 import { Link } from 'react-router-dom'
 import { useSelector,useDispatch } from 'react-redux'
 import { login,logout } from '../app/userSlice'
-function Logout() {
+
+
+function User({user}) {
     const dispatch = useDispatch()
     return (
-    <span onClick={()=>{
-        dispatch(logout())
-    }}>Logout
+    <span className='nav-span nav-log' onClick={(user)=>{
+        if(user){
+            dispatch(logout())
+        }
+    }}>{user ? "Logout" : "Login" }
     </span>
     )
 }
@@ -44,9 +48,7 @@ function Navbar() {
             </Link>
           </div>
           <Link to="/Login">
-          <span className='nav-log nav-span'>
-              {user ? <Logout /> : "Login" }
-          </span>
+          <User user={user} />
           </Link>
 
       </div>
