@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import './HomeScreen.css'
+import { useNavigate } from 'react-router'
 
 function Card({image, title, price, status}) {
+
     return (
         <div className='card'>
             <div className='card-img'>
-                <img src={image} style={{width:'300px',height:'150px',borderRadius:'5%'}}/>
+                {image}
             </div>
             <div className='card-title'>{title}</div>
             <span className='card-price'>${price}</span>
@@ -16,10 +19,18 @@ function Card({image, title, price, status}) {
 
 function HomeScreen() {
     const [data,setData] = useState([])
+    const navigate = useNavigate()
+
+    const user = useSelector((state)=>state.user.user)
+    useEffect(()=>{
+        if(!user) {
+            navigate('/login')
+        }
+    },[user])
   return (
     <div className='HomePage'>
         <div class="grid-container">
-            
+            Hello, Welcome
         </div>
     </div>
   )

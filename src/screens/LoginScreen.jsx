@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import './LoginScreen.css'
 import { login,logout } from '../app/userSlice'
 import { auth } from '../firebase'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { useNavigate } from 'react-router'
 
 function LoginScreen() {
+  const navigate = useNavigate()
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
+
+  const user = useSelector((state)=>state.user.user)
 
   const dispatch = useDispatch()
 
@@ -37,6 +41,12 @@ function LoginScreen() {
   setEmail("")
   setPassword("")
   }
+  
+  useEffect(()=>{
+    if(user) {
+      navigate('/')
+    }
+  },[user])
 
   return (
     <div className='full-screen'>

@@ -1,9 +1,23 @@
-import React from 'react'
+import React,{ useEffect } from 'react'
 import { Outlet } from 'react-router'
 import './Navbar.css'
 import { Link } from 'react-router-dom'
+import { useSelector,useDispatch } from 'react-redux'
+import { login,logout } from '../app/userSlice'
+function Logout() {
+    const dispatch = useDispatch()
+    return (
+    <span onClick={()=>{
+        dispatch(logout())
+    }}>Logout
+    </span>
+    )
+}
 
 function Navbar() {
+
+    const user = useSelector((state)=>state.user.user)
+
   return (
     <><div className='nav'>
           <div className='nav-left'>
@@ -31,7 +45,7 @@ function Navbar() {
           </div>
           <Link to="/Login">
           <span className='nav-log nav-span'>
-              Login
+              {user ? <Logout /> : "Login" }
           </span>
           </Link>
 
