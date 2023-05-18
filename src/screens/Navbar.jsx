@@ -4,6 +4,8 @@ import './Navbar.css'
 import { Link } from 'react-router-dom'
 import { useSelector,useDispatch } from 'react-redux'
 import { login,logout } from '../app/userSlice'
+import { onAuthStateChanged,signOut } from 'firebase/auth'
+import { auth } from '../firebase'
 
 
 function User({user}) {
@@ -11,7 +13,7 @@ function User({user}) {
     return (
     <span className='nav-span nav-log' onClick={(user)=>{
         if(user){
-            dispatch(logout())
+            signOut(auth)
         }
     }}>{user ? "Logout" : "Login" }
     </span>
@@ -19,8 +21,23 @@ function User({user}) {
 }
 
 function Navbar() {
-
+    const dispatch = useDispatch()
     const user = useSelector((state)=>state.user.user)
+
+    useEffect(()=>{
+        onAuthStateChanged(auth, (User)=>{
+            if(User){
+                dispatch(login(User))
+            }
+            else {
+                dispatch(logout())
+            }
+        })
+        return () => {
+            unsubscribe()
+          }
+    },[dispatch])
+
 
   return (
     <><div className='nav'>
