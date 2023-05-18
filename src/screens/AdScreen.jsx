@@ -24,22 +24,25 @@ function AdScreen() {
 
 
   const handleSubmit = (e) => {
+    const now=Date.now()
     e.preventDefault()
-    writeData(title,image,price,stats) 
-    setImage(null)
-    setTitle(null)
-    setPrice(null)
-    setStats(null)
+    writeData(title,image,price,stats,now,Date.now+20000) 
+    setImage("")
+    setTitle("")
+    setPrice("")
+    setStats("")
   }
 
-  const writeData = (title,image,price,stats) => {
+  const writeData = (title,image,price,stats,start,end) => {
     const postListRef = ref(db, 'Products');
     const newPostRef = push(postListRef);
     set(newPostRef, {
         Title : title,
         Image : image,
         Price : price,
-        Stats : stats
+        Stats : stats,
+        Start : start,
+        End : end
     });
   }
 

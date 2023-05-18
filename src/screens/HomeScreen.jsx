@@ -27,7 +27,7 @@ function HomeScreen() {
     const user = useSelector((state) => state.user.user);
 
     useEffect(() => {
-
+        setTimeout(()=>{
         onValue(dbRef, (snapshot) => {
             const newData = [];
             snapshot.forEach((childSnapshot) => {
@@ -38,8 +38,11 @@ function HomeScreen() {
             });
             console.log(Date.now())
             setData(newData.filter((prod)=>{
-                return prod.value.Start<Date.now && prod.value.End>Date.now
+                console.log(prod)
+                console.log(prod.value.Start<Date.now && prod.value.End>Date.now)
+                return ((prod.value.Start<Date.now()) && (prod.value.End>Date.now()))
             }));
+        },[1000])
         });
     }, []);
 
