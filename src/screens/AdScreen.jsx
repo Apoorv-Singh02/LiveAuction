@@ -26,7 +26,7 @@ function AdScreen() {
   const handleSubmit = (e) => {
     const now=Date.now()
     e.preventDefault()
-    writeData(title,image,price,stats,now,Date.now+20000) 
+    writeData(title,image,price,stats,now,now+30000) 
     setImage("")
     setTitle("")
     setPrice("")
