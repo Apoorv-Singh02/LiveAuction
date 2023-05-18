@@ -27,9 +27,6 @@ function HomeScreen() {
     const user = useSelector((state) => state.user.user);
 
     useEffect(() => {
-        if (!user) {
-            navigate('/login');
-        }
 
         onValue(dbRef, (snapshot) => {
             const newData = [];
@@ -39,7 +36,10 @@ function HomeScreen() {
                     value: childSnapshot.val(),
                 });
             });
-            setData(newData);
+            console.log(Date.now())
+            setData(newData.filter((prod)=>{
+                return prod.value.Start<Date.now && prod.value.End>Date.now
+            }));
         });
     }, []);
 

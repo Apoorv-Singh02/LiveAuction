@@ -1,26 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import './LoginScreen.css'
-import { login,logout } from '../app/userSlice'
 import { auth } from '../firebase'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
-import { useNavigate } from 'react-router'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
 
 function LoginScreen() {
-  const navigate = useNavigate()
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
-
-  const user = useSelector((state)=>state.user.user)
-
-  const dispatch = useDispatch()
 
   const handleSignIn = (e) => {
     e.preventDefault()
     signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
-    console.log(userCredential)
-    dispatch(login(userCredential.user))
+    console.log(userCredential.user)
   })
   .catch((error) => {
     console.log(error)
@@ -32,8 +23,7 @@ function LoginScreen() {
   const handleSignUp = () => {
     createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
-    console.log(userCredential)
-    dispatch(login(userCredential.user))
+    console.log(userCredential.user)
   })
   .catch((error) => {
     console.log(error)
@@ -41,12 +31,6 @@ function LoginScreen() {
   setEmail("")
   setPassword("")
   }
-  
-  useEffect(()=>{
-    if(user) {
-      navigate('/')
-    }
-  },[user])
 
   return (
     <div className='full-screen'>

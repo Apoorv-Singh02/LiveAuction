@@ -1,5 +1,5 @@
 import React,{ useEffect } from 'react'
-import { Outlet } from 'react-router'
+import { Outlet, useNavigate } from 'react-router'
 import './Navbar.css'
 import { Link } from 'react-router-dom'
 import { useSelector,useDispatch } from 'react-redux'
@@ -8,10 +8,10 @@ import { onAuthStateChanged,signOut } from 'firebase/auth'
 import { auth } from '../firebase'
 
 
-function User({user}) {
-    const dispatch = useDispatch()
+function User() {
+    const user = useSelector((state)=>state.user.user)
     return (
-    <span className='nav-span nav-log' onClick={(user)=>{
+    <span className='nav-span nav-log' onClick={()=>{
         if(user){
             signOut(auth)
         }
@@ -21,22 +21,21 @@ function User({user}) {
 }
 
 function Navbar() {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
-    const user = useSelector((state)=>state.user.user)
 
     useEffect(()=>{
         onAuthStateChanged(auth, (User)=>{
             if(User){
                 dispatch(login(User))
+                navigate('/')
             }
             else {
                 dispatch(logout())
+                navigate('/login')
             }
         })
-        return () => {
-            unsubscribe()
-          }
-    },[dispatch])
+    },[])
 
 
   return (
@@ -65,7 +64,7 @@ function Navbar() {
             </Link>
           </div>
           <Link to="/Login">
-          <User user={user} />
+          <User />
           </Link>
 
       </div>
