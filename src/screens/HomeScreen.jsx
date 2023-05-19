@@ -5,7 +5,7 @@ import { ref, onValue } from "firebase/database";
 import { db } from '../firebase';
 
 function Card({image, title, price, Status, starttime, endtime, present}) {
-
+    
     return (
         <div className='card'>
             <div className='card-img'>
@@ -14,7 +14,7 @@ function Card({image, title, price, Status, starttime, endtime, present}) {
             <div className='card-title'>{title}</div>
             <span className='card-price'>${price}</span>
             {present && <span className='card-status'>Status: {Math.floor((endtime - Date.now())/1000)} seconds remaining</span>}
-            {!present && <span className='card-status'>Status: To be started at{Math.floor(starttime/1000)}</span>}
+            {!present && <span className='card-status'>Status: Starts in {Math.floor((starttime - Date.now())/1000)} seconds</span>}
         </div>
     )
 }

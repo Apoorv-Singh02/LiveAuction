@@ -10,6 +10,7 @@ function AdScreen() {
   const [image,setImage] = useState("")
   const [price,setPrice] = useState("")
   const [stats,setStats] = useState("")
+  const [date,setDate] = useState("")
 
   const navigate = useNavigate()
 
@@ -24,13 +25,14 @@ function AdScreen() {
 
 
   const handleSubmit = (e) => {
-    const now=Date.now()
     e.preventDefault()
-    writeData(title,image,price,stats,now,now+30000) 
+    console.log(Date.parse(date))
+    writeData(title,image,price,stats,Date.parse(date),Date.parse(date)+300000) 
     setImage("")
     setTitle("")
     setPrice("")
     setStats("")
+    setDate("")
   }
 
   const writeData = (title,image,price,stats,start,end) => {
@@ -63,6 +65,11 @@ function AdScreen() {
         <input value={stats} type='number' placeholder='Status' className='post-input' onChange={(e)=>{
           setStats(e.target.value)
         }}/>
+        <label for="start">Start date:</label>
+        <input type="datetime-local" value={date} min="2022-01-01T00:00" max="2024-12-31T23:59" onChange={(e)=>{
+          setDate(e.target.value)
+          console.log(date)
+        }} />
         <button type="submit" className='postad-btn' style={{width:'100%', backgroundColor:'blue', color:'white', fontWeight:'600', paddingTop:'15px', paddingBottom:'15px', marginTop:'10px'}}>Post</button>
       </form>
       </div>
