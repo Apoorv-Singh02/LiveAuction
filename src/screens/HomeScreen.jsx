@@ -15,21 +15,19 @@ function HomeScreen() {
 
     useEffect(() => {
         setInterval(() => {
-        onValue(dbRef, (snapshot) => {
-            const newData = [];
-            snapshot.forEach((childSnapshot) => {
-                newData.push({
-                    id: childSnapshot.key,
-                    value: childSnapshot.val(),
+            onValue(dbRef, (snapshot) => {
+                const newData = [];
+                snapshot.forEach((childSnapshot) => {
+                    newData.push({
+                        id: childSnapshot.key,
+                        value: childSnapshot.val(),
+                    });
                 });
-            });
-            setData(newData.filter((prod)=>{
-                return ((prod.value.Start<=Date.now()) && (prod.value.End>=Date.now()))
-            }));
-            console.log(data)
-            setOdata(newData.filter((prod)=>prod.value.Start>Date.now()))
-            console.log(data)
-        })
+                setData(newData.filter((prod) => {
+                    return ((prod.value.Start <= Date.now()) && (prod.value.End >= Date.now()))
+                }));
+                setOdata(newData.filter((prod) => prod.value.Start > Date.now()))
+               })
         }, 1000);
     }, []);
 
@@ -41,7 +39,7 @@ function HomeScreen() {
                     <Card index={prod.id} image={prod.value.Image} title={prod.value.Title} price={prod.value.Price} Status={prod.value.Stats} endtime={prod.value.End} starttime={prod.value.Start} present={true} highest={prod.value.Highest} />
                 ))}
             </div>
-            {data.length===0 && <div style={{height:'300px',display:'block'}}></div>}
+            {data.length === 0 && <div style={{ height: '300px', display: 'block' }}></div>}
             <h1>Yet To Start</h1>
             <div className='grid-container'>
                 {odata.map((prod) => (
