@@ -63,7 +63,7 @@ function AdScreen() {
         <input value={price} type='number' placeholder='Base Price' className='post-input' onChange={(e)=>{
           setPrice(e.target.value)
         }}/>
-        <input value={stats} type='number' placeholder='Status' className='post-input' onChange={(e)=>{
+        <input value={stats} type='text' placeholder='Status' className='post-input' onChange={(e)=>{
           setStats(e.target.value)
         }}/>
         <h3 style={{fontWeight:'600',marginBottom:'5px'}}>Start Time & date:</h3>
