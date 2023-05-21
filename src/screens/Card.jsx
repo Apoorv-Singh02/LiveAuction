@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import Modal from './Modal';
+import { useSelector } from 'react-redux';
 
 function Card({index, image, title, price, Status, starttime, endtime, present, highest}) {
-
+    const email = useSelector((state) => state.user.userEmail)
     function msToTime(ms) {
         let seconds = (ms / 1000).toFixed(0);
         let minutes = (ms / (1000 * 60)).toFixed(0);
@@ -27,6 +28,7 @@ function Card({index, image, title, price, Status, starttime, endtime, present, 
             {present && <span className='card-status'>Status: {msToTime(endtime - Date.now())} remaining</span>}
             {!present && <span className='card-status'>Status: Starts in {msToTime((starttime - Date.now()))}</span>}
             {present && <button className='place' onClick={()=>{setShowmodal(true)}}>Place Bid</button>}
+            {email===highest && <span style={{color:'red'}}>*You are the highest bidder</span>}
         </div>
     )
 }
