@@ -26,6 +26,7 @@ function HomeScreen() {
             setData(newData.filter((prod)=>{
                 return ((prod.value.Start<=Date.now()) && (prod.value.End>=Date.now()))
             }));
+            console.log(data)
             setOdata(newData.filter((prod)=>prod.value.Start>Date.now()))
             console.log(data)
         })
@@ -37,7 +38,7 @@ function HomeScreen() {
             <h1>On Going Auctions</h1>
             <div className='grid-container'>
                 {data.map((prod) => (
-                    <Card image={prod.value.Image} title={prod.value.Title} price={prod.value.Price} Status={prod.value.Stats} endtime={prod.value.End} starttime={prod.value.Start} present={true} />
+                    <Card index={prod.id} image={prod.value.Image} title={prod.value.Title} price={prod.value.Price} Status={prod.value.Stats} endtime={prod.value.End} starttime={prod.value.Start} present={true} highest={prod.value.Highest} />
                 ))}
             </div>
             {data.length===0 && <div style={{height:'300px',display:'block'}}></div>}

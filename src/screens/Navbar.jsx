@@ -3,7 +3,7 @@ import { Outlet, useNavigate } from 'react-router'
 import './Navbar.css'
 import { Link } from 'react-router-dom'
 import { useSelector,useDispatch } from 'react-redux'
-import { login,logout } from '../app/userSlice'
+import { login,logout,addEmail } from '../app/userSlice'
 import { onAuthStateChanged,signOut } from 'firebase/auth'
 import { auth } from '../firebase'
 
@@ -28,6 +28,7 @@ function Navbar() {
         onAuthStateChanged(auth, (User)=>{
             if(User){
                 dispatch(login(User))
+                dispatch(addEmail(User.email))
                 navigate('/')
             }
             else {

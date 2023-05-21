@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import Modal from './Modal';
 
-function Card({image, title, price, Status, starttime, endtime, present}) {
+function Card({index, image, title, price, Status, starttime, endtime, present, highest}) {
+
     function msToTime(ms) {
         let seconds = (ms / 1000).toFixed(0);
         let minutes = (ms / (1000 * 60)).toFixed(0);
@@ -17,7 +18,7 @@ function Card({image, title, price, Status, starttime, endtime, present}) {
 
     return (
         <div className='card'>
-            {showmodal && <Modal onClose={()=>{setShowmodal(false)}} image={image} title={title} price={price} Status={Status} starttime={starttime} endtime={endtime} present={present} />}
+            {showmodal && <Modal onClose={()=>{setShowmodal(false)}} index={index} image={image} title={title} price={price} Status={Status} starttime={starttime} endtime={endtime} present={present} highest={highest} />}
             <div className='card-img'>
                 <img src={image} style={{width:'300px',height:'150px',borderRadius:'10%'}} />
             </div>
