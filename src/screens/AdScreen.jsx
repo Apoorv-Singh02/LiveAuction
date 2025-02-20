@@ -68,11 +68,11 @@ function AdScreen() {
           setStats(e.target.value)
         }}/>
         <h3 style={{fontWeight:'600',marginBottom:'5px'}}>Start Time & date:</h3>
-        <input type="datetime-local" value={date} min="2022-01-01T00:00" max="2024-12-31T23:59" style={{height:'25px', width:'100%'}} onChange={(e)=>{
+        <input type="datetime-local" value={date} min="2022-01-01T00:00" max="2026-12-31T23:59" style={{height:'25px', width:'100%'}} onChange={(e)=>{
           setDate(e.target.value)
         }} />
         <h3 style={{fontWeight:'600', marginTop:'15px' , marginBottom:'5px'}}>End Time & date:</h3>
-        <input type="datetime-local" value={edate} min="2022-01-01T00:00" max="2024-12-31T23:59" style={{height:'25px', width:'100%'}} onChange={(e)=>{
+        <input type="datetime-local" value={edate} min="2022-01-01T00:00" max="2026-12-31T23:59" style={{height:'25px', width:'100%'}} onChange={(e)=>{
           setEdate(e.target.value)
         }} />
         <button type="submit" className='postad-btn' style={{width:'100%', backgroundColor:'blue', color:'white', fontWeight:'600', paddingTop:'15px', paddingBottom:'15px', marginTop:'35px'}}>Post</button>

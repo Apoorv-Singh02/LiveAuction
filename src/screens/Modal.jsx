@@ -58,7 +58,7 @@ function Modal({ onClose, index, image, title, price, Status, starttime, endtime
                     <h1 style={{ textAlign: 'center', height: '20%' }}>{title}</h1>
                     <div style={{ display: 'flex', width: '100%', height: '80%' }}>
                         <div style={{ display: 'flex', width: '40%', height: '80%' }}>
-                            <img src={image} style={{ width: '433px', objectFit: 'contain' }} />
+                            <img src={image} style={{ width: '300px', objectFit: 'contain' }} />
                         </div>
                         <div style={{ width: '60%', height: '80%', flexDirection: 'column', justifyContent: 'space-between' }}>
                             <div>
